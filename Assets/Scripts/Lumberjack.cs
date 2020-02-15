@@ -17,12 +17,22 @@ public class Lumberjack : MonoBehaviour
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical"); // May or may not use this
+        float fire1 = Input.GetAxisRaw("Fire1");
 
-        if (isStunned = false)
+        bool isSwingingAxe = Input.GetButtonDown("Fire1");
+
+        if (isSwingingAxe)
+        {
+            Debug.Log("swing axe");
+        }
+
+        if (isStunned == false)
         {
             transform.position = transform.position + (Vector3.right * horizontalInput * 0.1f);
             transform.position = transform.position + (Vector3.up * verticalInput * 0.1f);
         }
+
+
     }
 
     void Hit()
