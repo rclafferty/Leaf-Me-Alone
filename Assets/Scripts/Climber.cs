@@ -28,7 +28,7 @@ public class Climber : MonoBehaviour
     {
         if (collision.gameObject.name == "Tree")
         {
-            thisRigidbody.gravityScale = 0;
+            SetCling(0);
         }
     }
 
@@ -36,7 +36,7 @@ public class Climber : MonoBehaviour
     {
         if (collision.gameObject.name == "Tree")
         {
-            thisRigidbody.gravityScale = 0;
+            SetCling(0);
         }
     }
 
@@ -44,7 +44,12 @@ public class Climber : MonoBehaviour
     {
         if (collision.gameObject.name == "Tree")
         {
-            thisRigidbody.gravityScale = 1;
+            SetCling(1);
         }
+    }
+
+    void SetCling(float gravityScale)
+    {
+        thisRigidbody.gravityScale = gravityScale;
     }
 }

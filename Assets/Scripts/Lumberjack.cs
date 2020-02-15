@@ -26,15 +26,18 @@ public class Lumberjack : MonoBehaviour
 
             if (isSwingingAxe)
             {
-                Debug.Log("swing axe");
+                SwingAxe();
             }
         }
-
-
     }
 
     void Hit()
     {
         isStunned = true;
+    }
+
+    void SwingAxe()
+    {
+        Debug.Log("swing axe");
     }
 }
