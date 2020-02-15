@@ -5,8 +5,8 @@ using UnityEngine;
 public class Climber : MonoBehaviour
 {
     Rigidbody2D thisRigidbody;
-    bool isClimbing;
-    bool isGrounded;
+    [SerializeField] bool isClimbing;
+    [SerializeField] bool isGrounded;
     Vector3 jumpForce;
 
     const float MOVEMENT_SPEED = 0.1f;
@@ -17,7 +17,7 @@ public class Climber : MonoBehaviour
         thisRigidbody = GetComponent<Rigidbody2D>();
         isClimbing = false;
         isGrounded = true;
-        jumpForce = new Vector3(0, 6, 0);
+        jumpForce = new Vector3(0, 6.1f, 0);
     }
 
     // Update is called once per frame
@@ -31,9 +31,12 @@ public class Climber : MonoBehaviour
         {
             Jump();
         }
-        
+
         transform.position = transform.position + (Vector3.right * horizontalInput * 0.1f);
-        transform.position = transform.position + (Vector3.up * verticalInput * 0.1f);
+        if (isClimbing)
+        {
+            transform.position = transform.position + (Vector3.up * verticalInput * 0.1f);
+        }
     }
 
     void Jump()
@@ -72,6 +75,14 @@ public class Climber : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ground" || collision.gameObject.tag == "Branch")
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Ground" || collision.gameObject.tag == "Branch")
         {
