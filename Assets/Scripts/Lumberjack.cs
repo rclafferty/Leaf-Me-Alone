@@ -49,9 +49,11 @@ public class Lumberjack : Player
     IEnumerator StunMovement(float duration)
     {
         isStunned = true;
+        GetComponent<Animator>().SetBool("Stun", true);
 
         yield return new WaitForSeconds(duration);
 
         isStunned = false;
+        GetComponent<Animator>().SetBool("Stun", false);
     }
 }
