@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2902581549640794289}
   - component: {fileID: 1608044889276667257}
+  - component: {fileID: 2856659048080428099}
+  - component: {fileID: 2527518982533978582}
   m_Layer: 0
   m_Name: Branches-T1-Right-(spaced-out)
   m_TagString: Untagged
@@ -80,3 +82,82 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2856659048080428099
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683898998714051119}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.22, y: 0.5}
+    newSize: {x: 0.22, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.01996408, y: 0.2305072}
+      - {x: -0.019934556, y: 0.25018546}
+      - {x: -0.030141931, y: 0.25005138}
+      - {x: -0.029474914, y: 0.230544}
+      - {x: -0.084949955, y: 0.23015659}
+      - {x: -0.08424169, y: 0.21998978}
+      - {x: -0.048228603, y: 0.21980444}
+      - {x: -0.038099788, y: 0.21985492}
+      - {x: -0.019770127, y: 0.21982615}
+      - {x: -0.02075698, y: 0.2093381}
+      - {x: -0.009590685, y: 0.2101419}
+      - {x: -0.009359857, y: 0.22049266}
+      - {x: 0.0000034769378, y: 0.220511}
+      - {x: 0.00008024772, y: 0.22973113}
+--- !u!60 &2527518982533978582
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683898998714051119}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.22, y: 0.5}
+    newSize: {x: 0.22, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.080098115, y: -0.1401265}
+      - {x: 0.03988763, y: -0.139948}
+      - {x: 0.03985977, y: -0.119903944}
+      - {x: 0.030322155, y: -0.12007847}
+      - {x: 0.030179938, y: -0.1297583}
+      - {x: -0.040039323, y: -0.13017832}
+      - {x: -0.040125392, y: -0.12012186}
+      - {x: -0.08467939, y: -0.12013911}
+      - {x: -0.0545972, y: -0.14574109}
+      - {x: 0.03182141, y: -0.15072952}
+      - {x: 0.08978611, y: -0.15012032}
+      - {x: 0.09033301, y: -0.13970397}
+      - {x: 0.10022851, y: -0.14025138}
+      - {x: 0.10018595, y: -0.12999636}
+      - {x: 0.080153346, y: -0.12989408}
