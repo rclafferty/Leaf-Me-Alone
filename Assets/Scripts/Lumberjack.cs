@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lumberjack : MonoBehaviour
+public class Lumberjack : Player
 {
     bool isStunned = false;
+    const float STUN_DURATION = 3.0f;
+
+    [SerializeField] bool isSwingingAxe;
+
+    Coroutine thisCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -15,15 +20,12 @@ public class Lumberjack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float fire1 = Input.GetAxisRaw("Fire1");
+        horizontalInput = Input.GetAxisRaw("Lumberjack Horizontal");
 
         if (isStunned == false)
         {
-            transform.position = transform.position + (Vector3.right * horizontalInput * 0.1f);
-
-            bool isSwingingAxe = Input.GetButtonDown("Fire1");
-
+            MoveHorizontal();
+            isSwingingAxe = Input.GetButtonDown("Swing Axe");
             if (isSwingingAxe)
             {
                 SwingAxe();
@@ -33,11 +35,23 @@ public class Lumberjack : MonoBehaviour
 
     public void Hit()
     {
-        isStunned = true;
+        if (thisCoroutine != null)
+            StopCoroutine(thisCoroutine);
+
+        thisCoroutine = StartCoroutine(StunMovement(STUN_DURATION));
     }
 
     void SwingAxe()
     {
         Debug.Log("swing axe");
+    }
+
+    IEnumerator StunMovement(float duration)
+    {
+        isStunned = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isStunned = false;
     }
 }

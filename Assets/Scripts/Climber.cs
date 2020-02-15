@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Climber : MonoBehaviour
+public class Climber : Player
 {
     [SerializeField] GameObject thrownApplePrefab;
-
-    Rigidbody2D thisRigidbody;
-    [SerializeField] bool isClimbing;
+    
     [SerializeField] bool isGrounded;
     Vector3 jumpForce;
 
     int apples;
-
-    const float MOVEMENT_SPEED = 0.04f;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +17,6 @@ public class Climber : MonoBehaviour
         apples = 0;
 
         thisRigidbody = GetComponent<Rigidbody2D>();
-        isClimbing = false;
         isGrounded = true;
         jumpForce = new Vector3(0, 5.5f, 0);
     }
@@ -29,22 +24,17 @@ public class Climber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical"); // May or may not use this
-        bool fire1 = Input.GetButtonDown("Fire1");
+        horizontalInput = Input.GetAxisRaw("Climber Horizontal");
+        bool jump = Input.GetButtonDown("Jump");
 
-        if (fire1 && isGrounded)
+        if (jump && isGrounded)
         {
             Jump();
         }
 
-        transform.position = transform.position + (Vector3.right * horizontalInput * MOVEMENT_SPEED);
-        if (isClimbing)
-        {
-            transform.position = transform.position + (Vector3.up * verticalInput * MOVEMENT_SPEED);
-        }
-
-        if (Input.GetButtonDown("Fire2"))
+        MoveHorizontal();
+        
+        if (Input.GetButtonDown("Throw Apple"))
         {
             ThrowApple();
         }
@@ -72,36 +62,16 @@ public class Climber : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Tree")
-        {
-            SetCling(0);
-        }
-        else if (collision.gameObject.name == "Apple")
+        if (collision.gameObject.name == "Apple")
         {
             apples++;
             Destroy(collision.gameObject);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Tree")
-        {
-            SetCling(0);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Tree")
-        {
-            SetCling(1);
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Ground" || collision.gameObject.tag == "Branch")
+        if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = true;
         }
@@ -109,7 +79,7 @@ public class Climber : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Ground" || collision.gameObject.tag == "Branch")
+        if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = true;
         }
@@ -117,23 +87,23 @@ public class Climber : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Ground" || collision.gameObject.tag == "Branch")
+        if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = false;
         }
     }
 
-    void SetCling(float gravityScale)
+    bool CheckStandingCollision(string tag)
     {
-        if (gravityScale < 0.01f)
+        string[] validStandingCollisions = { "Ground", "Branch" };
+        foreach (string vsc in validStandingCollisions)
         {
-            gravityScale = 0;
-            isClimbing = false;
+            if (tag == vsc)
+            {
+                return true;
+            }
         }
-        else
-        {
-            thisRigidbody.gravityScale = gravityScale;
-            isClimbing = true;
-        }
+
+        return false;
     }
 }
