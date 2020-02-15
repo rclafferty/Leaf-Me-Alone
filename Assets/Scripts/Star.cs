@@ -28,6 +28,7 @@ public class Star : MonoBehaviour
             // Animate glow
             thisAnimator.SetTrigger("Glow");
 
+            // Intentionally hardcoded -- Return to dim should be short
             yield return new WaitForSeconds(Random.Range(3, 6));
 
             // Animate dim
