@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Climber : MonoBehaviour
 {
-    bool isStunned = false;
     Rigidbody2D thisRigidbody;
+    bool isClimbing;
+    bool isGrounded;
+    Vector3 jumpForce;
+
+    const float MOVEMENT_SPEED = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
         thisRigidbody = GetComponent<Rigidbody2D>();
+        isClimbing = false;
+        isGrounded = true;
+        jumpForce = new Vector3(0, 6, 0);
     }
 
     // Update is called once per frame
@@ -18,10 +25,26 @@ public class Climber : MonoBehaviour
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical"); // May or may not use this
-        float fire1 = Input.GetAxisRaw("Fire1");
+        bool fire1 = Input.GetButtonDown("Fire1");
 
+        if (fire1 && isGrounded)
+        {
+            Jump();
+        }
+        
         transform.position = transform.position + (Vector3.right * horizontalInput * 0.1f);
         transform.position = transform.position + (Vector3.up * verticalInput * 0.1f);
+    }
+
+    void Jump()
+    {
+        Debug.Log("Jumping");
+        thisRigidbody.AddForce(jumpForce, ForceMode2D.Impulse);
+    }
+
+    void Climb(Vector3 climbingDirection)
+    {
+        transform.position += climbingDirection * MOVEMENT_SPEED;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,8 +71,33 @@ public class Climber : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ground" || collision.gameObject.tag == "Branch")
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ground" || collision.gameObject.tag == "Branch")
+        {
+            isGrounded = false;
+        }
+    }
+
     void SetCling(float gravityScale)
     {
-        thisRigidbody.gravityScale = gravityScale;
+        if (gravityScale < 0.01f)
+        {
+            gravityScale = 0;
+            isClimbing = false;
+        }
+        else
+        {
+            thisRigidbody.gravityScale = gravityScale;
+            isClimbing = true;
+        }
     }
 }
