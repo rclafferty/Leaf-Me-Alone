@@ -8,12 +8,14 @@ public class Climber : Player
     
     [SerializeField] bool isGrounded;
     Vector3 jumpForce;
+    int health;
 
     int apples;
     
     // Start is called before the first frame update
     void Start()
     {
+        health = 10;
         apples = 0;
 
         thisRigidbody = GetComponent<Rigidbody2D>();
@@ -26,6 +28,8 @@ public class Climber : Player
     {
         horizontalInput = Input.GetAxisRaw("Climber Horizontal");
         bool jump = Input.GetButtonDown("Jump");
+        bool eatApple = Input.GetButtonDown("Eat Apple");
+        bool throwApple = Input.GetButtonDown("Throw Apple");
 
         if (jump && isGrounded)
         {
@@ -34,7 +38,12 @@ public class Climber : Player
 
         MoveHorizontal();
         
-        if (Input.GetButtonDown("Throw Apple"))
+        if (eatApple)
+        {
+            EatApple();
+        }
+
+        if (throwApple)
         {
             ThrowApple();
         }
@@ -57,6 +66,19 @@ public class Climber : Player
         {
             apples--;
             Instantiate(thrownApplePrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    void EatApple()
+    {
+        if (apples <= 0)
+            return;
+
+        if (health < 10)
+        {
+            // Add 2 but no more than 10 total to health
+            health = Mathf.Min(10, health + 2);
+            apples--;
         }
     }
 
