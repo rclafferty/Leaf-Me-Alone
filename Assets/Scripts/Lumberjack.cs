@@ -31,7 +31,7 @@ public class Lumberjack : MonoBehaviour
         }
     }
 
-    void Hit()
+    public void Hit()
     {
         isStunned = true;
     }

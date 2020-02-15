@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Climber : MonoBehaviour
 {
+    [SerializeField] GameObject thrownApplePrefab;
+
     Rigidbody2D thisRigidbody;
     [SerializeField] bool isClimbing;
     [SerializeField] bool isGrounded;
     Vector3 jumpForce;
 
-    const float MOVEMENT_SPEED = 0.1f;
+    int apples;
 
+    const float MOVEMENT_SPEED = 0.04f;
+    
     // Start is called before the first frame update
     void Start()
     {
+        apples = 0;
+
         thisRigidbody = GetComponent<Rigidbody2D>();
         isClimbing = false;
         isGrounded = true;
-        jumpForce = new Vector3(0, 6.1f, 0);
+        jumpForce = new Vector3(0, 5.5f, 0);
     }
 
     // Update is called once per frame
@@ -32,10 +38,15 @@ public class Climber : MonoBehaviour
             Jump();
         }
 
-        transform.position = transform.position + (Vector3.right * horizontalInput * 0.1f);
+        transform.position = transform.position + (Vector3.right * horizontalInput * MOVEMENT_SPEED);
         if (isClimbing)
         {
-            transform.position = transform.position + (Vector3.up * verticalInput * 0.1f);
+            transform.position = transform.position + (Vector3.up * verticalInput * MOVEMENT_SPEED);
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            ThrowApple();
         }
     }
 
@@ -50,11 +61,25 @@ public class Climber : MonoBehaviour
         transform.position += climbingDirection * MOVEMENT_SPEED;
     }
 
+    void ThrowApple()
+    {
+        if (apples > 0)
+        {
+            apples--;
+            Instantiate(thrownApplePrefab, transform.position, Quaternion.identity);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Tree")
         {
             SetCling(0);
+        }
+        else if (collision.gameObject.name == "Apple")
+        {
+            apples++;
+            Destroy(collision.gameObject);
         }
     }
 
