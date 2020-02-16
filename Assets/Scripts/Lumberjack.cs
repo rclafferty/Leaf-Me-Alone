@@ -9,6 +9,8 @@ public class Lumberjack : Player
     bool isTouchingATree = false;
     const float STUN_DURATION = 3.0f;
 
+    bool directionIsRight = false;
+
     [SerializeField] bool isSwingingAxe;
 
     Coroutine thisCoroutine;
@@ -28,12 +30,34 @@ public class Lumberjack : Player
 
         thisAnimator.SetFloat("Horizontal", horizontalInput);
 
+        if (Mathf.Abs(horizontalInput) > 0.5f)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            if (horizontalInput > 0f)
+            {
+                directionIsRight = true;
+            }
+            else
+            {
+                directionIsRight = false;
+            }
+        }
+
         if (isStunned == false)
         {
             MoveHorizontal();
             isSwingingAxe = Input.GetButtonDown("Swing Axe");
             if (isSwingingAxe)
             {
+                if (directionIsRight)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+
                 SwingAxe();
             }
         }
