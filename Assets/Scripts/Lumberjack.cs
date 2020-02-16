@@ -11,16 +11,20 @@ public class Lumberjack : Player
 
     Coroutine thisCoroutine;
 
+    Animator thisAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        thisAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         horizontalInput = Input.GetAxisRaw("Lumberjack Horizontal");
+
+        thisAnimator.SetFloat("Horizontal", horizontalInput);
 
         if (isStunned == false)
         {
@@ -43,6 +47,7 @@ public class Lumberjack : Player
 
     void SwingAxe()
     {
+        thisAnimator.SetTrigger("Swing Axe");
         Debug.Log("swing axe");
     }
 
