@@ -387,7 +387,7 @@ MonoBehaviour:
   walkingSprite: {fileID: 21300000, guid: 3794b65de070a8541ae6a3926186098b, type: 3}
   healthBarImage: {fileID: 7594516750341664791}
   applesText: {fileID: 4122259376547613347}
-  EndUI: {fileID: 0}
+  EndUI: {fileID: 5047648748243936490}
 --- !u!50 &1563432930476913662
 Rigidbody2D:
   serializedVersion: 4
