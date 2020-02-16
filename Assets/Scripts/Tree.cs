@@ -51,10 +51,11 @@ public class Tree : MonoBehaviour
         g.GetComponent<SpriteRenderer>().enabled = false; //.SetActive(false);
         g.GetComponent<BoxCollider2D>().enabled = false; //.SetActive(false);
 
-        foreach (GameObject child in childComponents)
+        // foreach (GameObject child in childComponents)
+        foreach (Transform child in transform)
         {
             Debug.Log(child.name);
-            child.SetActive(false);
+            child.gameObject.SetActive(false);
         }
 
         yield return new WaitForSeconds(1);
@@ -65,10 +66,11 @@ public class Tree : MonoBehaviour
         g.GetComponent<SpriteRenderer>().enabled = true; //.SetActive(true);
         g.GetComponent<BoxCollider2D>().enabled = true; //.SetActive(false);
 
-        foreach (GameObject child in childComponents)
+        //foreach (GameObject child in childComponents)
+        foreach (Transform child in transform)
         {
             Debug.Log(child.name);
-            child.SetActive(true);
+            child.gameObject.SetActive(true);
         }
     }
 }
