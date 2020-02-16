@@ -58,7 +58,7 @@ public class Tree : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(5);
 
         spriteRenderer.sprite = treeSprites[0];
         durability = START_DURABILITY;

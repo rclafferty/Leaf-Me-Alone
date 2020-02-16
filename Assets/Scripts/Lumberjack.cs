@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Lumberjack : Player
 {
@@ -15,18 +16,22 @@ public class Lumberjack : Player
 
     Coroutine thisCoroutine;
 
-    Animator thisAnimator;
+    [SerializeField] Animator thisAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
-        thisAnimator = GetComponent<Animator>();
+        if (thisAnimator == null)
+            thisAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Lumberjack Horizontal");
+        if (SceneManager.GetActiveScene().name != "Title2")
+        {
+            horizontalInput = Input.GetAxisRaw("Lumberjack Horizontal");
+        }
 
         thisAnimator.SetFloat("Horizontal", horizontalInput);
 
@@ -46,7 +51,10 @@ public class Lumberjack : Player
         if (isStunned == false)
         {
             MoveHorizontal();
-            isSwingingAxe = Input.GetButtonDown("Swing Axe");
+
+            if (SceneManager.GetActiveScene().name != "Title2")
+                isSwingingAxe = Input.GetButtonDown("Swing Axe");
+
             if (isSwingingAxe)
             {
                 if (directionIsRight)
@@ -63,6 +71,24 @@ public class Lumberjack : Player
         }
     }
 
+    public void MoveHorizontalInput(float hi)
+    {
+        horizontalInput = hi;
+
+        if (Mathf.Abs(hi) > 0.5f)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            if (horizontalInput > 0f)
+            {
+                directionIsRight = true;
+            }
+            else
+            {
+                directionIsRight = false;
+            }
+        }
+    }
+
     public void Hit()
     {
         if (thisCoroutine != null)
@@ -71,7 +97,7 @@ public class Lumberjack : Player
         thisCoroutine = StartCoroutine(StunMovement(STUN_DURATION));
     }
 
-    void SwingAxe()
+    public void SwingAxe()
     {
         thisAnimator.SetTrigger("Swing Axe");
         Debug.Log("swing axe");
