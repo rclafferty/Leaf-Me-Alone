@@ -22,6 +22,8 @@ public class TitleScreenLumberjack : MonoBehaviour
 
     IEnumerator AutoMove()
     {
+        yield return new WaitForSeconds(0.2f);
+
         // Move left
         while (Mathf.Abs(transform.position.x - leftMarker.transform.position.x) > 0.1f)
         {

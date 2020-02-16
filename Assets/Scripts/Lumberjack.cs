@@ -106,7 +106,7 @@ public class Lumberjack : Player
     public void SwingAxe()
     {
         thisAnimator.SetTrigger("Swing Axe");
-        Debug.Log("swing axe");
+        // Debug.Log("swing axe");
 
         if (touchingTree != null)
         {
