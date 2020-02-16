@@ -34,7 +34,7 @@ public class Lumberjack : Player
         if (inputDelay > 0.009f)
             inputDelay -= Time.deltaTime;
 
-        if (SceneManager.GetActiveScene().name != "Title2")
+        if (SceneManager.GetActiveScene().name != "Title2" && SceneManager.GetActiveScene().name != "Credits")
         {
             horizontalInput = Input.GetAxisRaw("Lumberjack Horizontal");
         }
@@ -58,7 +58,7 @@ public class Lumberjack : Player
         {
             MoveHorizontal();
 
-            if (SceneManager.GetActiveScene().name != "Title2")
+            if (SceneManager.GetActiveScene().name != "Title2" && SceneManager.GetActiveScene().name != "Credits")
                 isSwingingAxe = Input.GetButtonDown("Swing Axe");
 
             if (isSwingingAxe && inputDelay < 0.01f)
