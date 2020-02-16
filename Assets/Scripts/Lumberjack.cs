@@ -18,6 +18,9 @@ public class Lumberjack : Player
 
     [SerializeField] Animator thisAnimator;
 
+    const float MAX_DELAY = 1.0f;
+    float inputDelay = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,9 @@ public class Lumberjack : Player
     // Update is called once per frame
     void Update()
     {
+        if (inputDelay > 0.009f)
+            inputDelay -= Time.deltaTime;
+
         if (SceneManager.GetActiveScene().name != "Title2")
         {
             horizontalInput = Input.GetAxisRaw("Lumberjack Horizontal");
@@ -55,7 +61,7 @@ public class Lumberjack : Player
             if (SceneManager.GetActiveScene().name != "Title2")
                 isSwingingAxe = Input.GetButtonDown("Swing Axe");
 
-            if (isSwingingAxe)
+            if (isSwingingAxe && inputDelay < 0.01f)
             {
                 if (directionIsRight)
                 {
@@ -106,6 +112,8 @@ public class Lumberjack : Player
         {
             touchingTree.GetComponent<Tree>().Hit();
         }
+
+        inputDelay = MAX_DELAY;
     }
 
     IEnumerator StunMovement(float duration)
