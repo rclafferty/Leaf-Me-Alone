@@ -14,6 +14,8 @@ public class Climber : Player
     [SerializeField] int health;
     const int MAX_HEALTH = 10;
 
+    bool isStunned = false;
+
     [SerializeField] Sprite jumpingSprite;
     [SerializeField] Sprite walkingSprite;
     
@@ -39,30 +41,33 @@ public class Climber : Player
         bool eatApple = Input.GetButtonDown("Eat Apple");
         bool throwApple = Input.GetButtonDown("Throw Apple");
 
-        if (jump && isGrounded)
+        if (!isStunned)
         {
-            Jump();
-        }
+            if (jump && isGrounded)
+            {
+                Jump();
+            }
 
-        MoveHorizontal();
+            MoveHorizontal();
 
-        if (horizontalInput > 0.01f)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
+            if (horizontalInput > 0.01f)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
 
-        if (eatApple)
-        {
-            EatApple();
-        }
+            if (eatApple)
+            {
+                EatApple();
+            }
 
-        if (throwApple)
-        {
-            ThrowApple();
+            if (throwApple)
+            {
+                ThrowApple();
+            }
         }
     }
 
@@ -126,16 +131,29 @@ public class Climber : Player
 
         if (collision.gameObject.tag == "Ground" && isFalling)
         {
-            Vector3 locationDifference = jumpLocation - transform.position;
-            const float damageThreshold = 3;
-            if (locationDifference.y > damageThreshold)
-            {
-                int damage = (int)((MAX_HEALTH / 3 /* 25% */) + Mathf.Floor(locationDifference.y - damageThreshold));
-                health -= damage;
-            }
+            TakeDamage();
         }
 
         isFalling = false;
+    }
+
+    private void TakeDamage()
+    {
+        Vector3 locationDifference = jumpLocation - transform.position;
+        const float damageThreshold = 3;
+        if (locationDifference.y > damageThreshold)
+        {
+            int damage = (int)((MAX_HEALTH / 3 /* 25% */) + Mathf.Floor(locationDifference.y - damageThreshold));
+            health -= damage;
+        }
+
+        Debug.Log("Health: " + health);
+        if (health <= 0)
+        {
+            Debug.Log("Stunned!");
+            GetComponent<Animator>().SetTrigger("Stun");
+            isStunned = true;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
