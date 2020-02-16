@@ -8,19 +8,23 @@ public class Climber : Player
     [SerializeField] GameObject thrownApplePrefab;
     
     [SerializeField] bool isGrounded;
+    [SerializeField] bool isFalling;
+    Vector3 jumpLocation;
     Vector3 jumpForce;
-    int health;
-
+    [SerializeField] int health;
+    const int MAX_HEALTH = 10;
+    
     int apples;
     
     // Start is called before the first frame update
     void Start()
     {
-        health = 10;
+        health = MAX_HEALTH;
         apples = 0;
 
         thisRigidbody = GetComponent<Rigidbody2D>();
         isGrounded = true;
+        isFalling = false;
         jumpForce = new Vector3(0, 5.5f, 0);
     }
 
@@ -75,10 +79,10 @@ public class Climber : Player
         if (apples <= 0)
             return;
 
-        if (health < 10)
+        if (health < MAX_HEALTH)
         {
             // Add 2 but no more than 10 total to health
-            health = Mathf.Min(10, health + 2);
+            health = Mathf.Min(MAX_HEALTH, health + 2);
             apples--;
         }
     }
@@ -106,6 +110,19 @@ public class Climber : Player
         {
             isGrounded = true;
         }
+
+        if (collision.gameObject.tag == "Ground" && isFalling)
+        {
+            Vector3 locationDifference = jumpLocation - transform.position;
+            const float damageThreshold = 3;
+            if (locationDifference.y > damageThreshold)
+            {
+                int damage = (int)((MAX_HEALTH / 3 /* 25% */) + Mathf.Floor(locationDifference.y - damageThreshold));
+                health -= damage;
+            }
+        }
+
+        isFalling = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -121,6 +138,12 @@ public class Climber : Player
         if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = false;
+        }
+
+        if (collision.gameObject.tag == "Branch")
+        {
+            isFalling = true;
+            jumpLocation = transform.position;
         }
     }
 
