@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6733616068109639070}
   - component: {fileID: 2678677482000752727}
   - component: {fileID: 5031572521598036055}
-  - component: {fileID: 7122863345694311976}
-  - component: {fileID: 3964279973258658532}
+  - component: {fileID: 4689014973474537594}
+  - component: {fileID: 1783847263220744953}
+  - component: {fileID: 4380945034639238155}
   m_Layer: 0
   m_Name: Thrown Apple
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5635514494392074127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.2961, y: 0.2891, z: 0}
-  m_LocalScale: {x: 0.24765095, y: 0.24765095, z: 0.24765095}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e6b12ba3afa75f34bb598533845e5b12, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 79381b14b0d47ab45a37de6d9e11bdf4, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,19 +100,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7122863345694311976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5635514494392074127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8deca40fd9d98824e93c261613810131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!50 &3964279973258658532
+--- !u!50 &4689014973474537594
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -131,4 +120,32 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &1783847263220744953
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635514494392074127}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.4}
+  serializedVersion: 2
+  m_Radius: 0.1
+--- !u!114 &4380945034639238155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635514494392074127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8deca40fd9d98824e93c261613810131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
