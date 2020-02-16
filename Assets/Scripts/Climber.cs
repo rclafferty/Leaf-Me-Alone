@@ -24,12 +24,16 @@ public class Climber : Player
     float healthBarImageWidth;
 
     [SerializeField] Text applesText;
+
+    [SerializeField] GameObject EndUI;
     
     int apples;
     
     // Start is called before the first frame update
     void Start()
     {
+        EndUI.SetActive(false);
+
         health = MAX_HEALTH;
         apples = 0;
 
@@ -176,7 +180,7 @@ public class Climber : Player
         const float damageThreshold = 3;
         if (locationDifference.y > damageThreshold)
         {
-            int damage = (int)((MAX_HEALTH / 3 /* 25% */) + Mathf.Floor(locationDifference.y - damageThreshold));
+            int damage = (int)((MAX_HEALTH / 3) + Mathf.Floor(locationDifference.y - damageThreshold));
             health -= damage;
         }
 
@@ -186,6 +190,7 @@ public class Climber : Player
             Debug.Log("Stunned!");
             GetComponent<Animator>().SetTrigger("Stun");
             isStunned = true;
+            EndUI.SetActive(true);
         }
 
         DisplayHealth();
