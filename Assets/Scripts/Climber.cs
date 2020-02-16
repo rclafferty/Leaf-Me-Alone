@@ -27,6 +27,9 @@ public class Climber : Player
 
     [SerializeField] GameObject EndUI;
     [SerializeField] GameObject SuccessUI;
+
+    [SerializeField] Text successText;
+    [SerializeField] Button nextLevelButton;
     
     int apples;
     
@@ -182,6 +185,13 @@ public class Climber : Player
         // EndUI.SetActive(true);
         SuccessUI.SetActive(true);
         GetComponent<Animator>().SetTrigger("Celebrate");
+
+        if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            // Success Text to "Squirrel wins!" on Level3
+            successText.text = "Squirrel Wins!";
+            // Go to credits -- next in build index
+        }
     }
 
     private void TakeDamage()

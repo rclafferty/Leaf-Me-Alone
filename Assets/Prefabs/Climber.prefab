@@ -76,7 +76,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next Level
+  m_Text: Next
 --- !u!1 &1069283300052140785
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +544,8 @@ MonoBehaviour:
   applesText: {fileID: 4122259376547613347}
   EndUI: {fileID: 5047648748243936490}
   SuccessUI: {fileID: 1787049987759729371}
+  successText: {fileID: 2850997576316683746}
+  nextLevelButton: {fileID: 4007811962928737850}
 --- !u!50 &1563432930476913662
 Rigidbody2D:
   serializedVersion: 4
@@ -1919,7 +1921,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4097405895936972185}
-        m_MethodName: QuitGame
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2121,7 +2123,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4097405895936972185}
-        m_MethodName: StartGame
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

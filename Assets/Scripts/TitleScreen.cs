@@ -19,7 +19,7 @@ public class TitleScreen : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Instructions");
     }
 
     public void QuitGame()
