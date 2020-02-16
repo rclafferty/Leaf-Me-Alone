@@ -1021,9 +1021,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.52
+    y: 0.51
     width: 1
-    height: 0.48
+    height: 0.49
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2489,8 +2489,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807944740}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 1.336, y: -2.751064, z: 23.58664}
-  m_LocalScale: {x: 916.97766, y: 462.97025, z: 4.629702}
+  m_LocalPosition: {x: 1.336, y: -1.134, z: 23.58664}
+  m_LocalScale: {x: 916.97766, y: 543.81177, z: 4.629702}
   m_Children: []
   m_Father: {fileID: 895163777}
   m_RootOrder: 2
@@ -6149,6 +6149,11 @@ PrefabInstance:
         type: 3}
       propertyPath: orthographic size
       value: 2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701353544817240679, guid: 597b2693268e8e347a1a8e91a6d9e942,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.49
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 597b2693268e8e347a1a8e91a6d9e942, type: 3}
