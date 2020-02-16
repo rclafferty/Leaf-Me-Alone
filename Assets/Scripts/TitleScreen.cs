@@ -32,4 +32,14 @@ public class TitleScreen : MonoBehaviour
 
 #endif
     }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Title2");
+    }
 }

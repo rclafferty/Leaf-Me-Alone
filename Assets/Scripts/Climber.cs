@@ -26,6 +26,7 @@ public class Climber : Player
     [SerializeField] Text applesText;
 
     [SerializeField] GameObject EndUI;
+    [SerializeField] GameObject SuccessUI;
     
     int apples;
     
@@ -147,7 +148,9 @@ public class Climber : Player
             if (collision.name == "Golden Apple")
             {
                 // Next level
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+                Success();
             }
             else
             {
@@ -172,6 +175,13 @@ public class Climber : Player
         }
 
         isFalling = false;
+    }
+
+    private void Success()
+    {
+        // EndUI.SetActive(true);
+        SuccessUI.SetActive(true);
+        GetComponent<Animator>().SetTrigger("Celebrate");
     }
 
     private void TakeDamage()
