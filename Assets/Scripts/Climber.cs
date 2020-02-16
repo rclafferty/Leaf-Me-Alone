@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Climber : Player
 {
@@ -86,7 +87,15 @@ public class Climber : Player
     {
         if (collision.gameObject.tag == "Apple")
         {
-            apples++;
+            if (collision.name == "Golden Apple")
+            {
+                // Next level
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                apples++;
+            }
             Destroy(collision.gameObject);
         }
     }
