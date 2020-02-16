@@ -13,6 +13,9 @@ public class Climber : Player
     Vector3 jumpForce;
     [SerializeField] int health;
     const int MAX_HEALTH = 10;
+
+    [SerializeField] Sprite jumpingSprite;
+    [SerializeField] Sprite walkingSprite;
     
     int apples;
     
@@ -66,6 +69,7 @@ public class Climber : Player
     void Jump()
     {
         Debug.Log("Jumping");
+        GetComponent<SpriteRenderer>().sprite = jumpingSprite;
         thisRigidbody.AddForce(jumpForce, ForceMode2D.Impulse);
     }
 
@@ -139,6 +143,7 @@ public class Climber : Player
         if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = true;
+            GetComponent<SpriteRenderer>().sprite = walkingSprite;
         }
     }
 
@@ -147,12 +152,14 @@ public class Climber : Player
         if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = false;
+            GetComponent<SpriteRenderer>().sprite = jumpingSprite;
         }
 
         if (collision.gameObject.tag == "Branch")
         {
             isFalling = true;
             jumpLocation = transform.position;
+            GetComponent<SpriteRenderer>().sprite = jumpingSprite;
         }
     }
 
