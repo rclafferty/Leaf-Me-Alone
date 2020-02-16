@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Climber : Player
 {
@@ -18,6 +19,11 @@ public class Climber : Player
 
     [SerializeField] Sprite jumpingSprite;
     [SerializeField] Sprite walkingSprite;
+
+    [SerializeField] Image healthBarImage;
+    float healthBarImageWidth;
+
+    [SerializeField] Text applesText;
     
     int apples;
     
@@ -31,6 +37,8 @@ public class Climber : Player
         isGrounded = true;
         isFalling = false;
         jumpForce = new Vector3(0, 5.5f, 0);
+
+        healthBarImageWidth = healthBarImage.rectTransform.rect.width;
     }
 
     // Update is called once per frame
@@ -90,6 +98,8 @@ public class Climber : Player
             apples--;
             Instantiate(thrownApplePrefab, transform.position, Quaternion.identity);
         }
+
+        DisplayApples();
     }
 
     void EatApple()
@@ -103,6 +113,27 @@ public class Climber : Player
             health = Mathf.Min(MAX_HEALTH, health + 2);
             apples--;
         }
+
+        DisplayHealth();
+        DisplayApples();
+    }
+
+    void DisplayApples()
+    {
+        applesText.text = "Apples: " + apples;
+    }
+
+    void DisplayHealth()
+    {
+        float percentage = (float)health / (float)MAX_HEALTH;
+
+        /* RectTransform rectTransform = healthBarImage.rectTransform;
+        Vector3 scale = rectTransform.localScale;
+        scale.x = percentage;
+        rectTransform.localScale = scale;
+        healthBarImage.rectTransform = scale; */
+
+        healthBarImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, percentage * healthBarImageWidth);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -117,6 +148,8 @@ public class Climber : Player
             else
             {
                 apples++;
+
+                DisplayApples();
             }
             Destroy(collision.gameObject);
         }
@@ -154,6 +187,8 @@ public class Climber : Player
             GetComponent<Animator>().SetTrigger("Stun");
             isStunned = true;
         }
+
+        DisplayHealth();
     }
 
     private void OnCollisionStay2D(Collision2D collision)

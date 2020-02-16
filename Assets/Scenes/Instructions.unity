@@ -4905,7 +4905,7 @@ MonoBehaviour:
 
     Eat
 
-    (+2 health)'
+    (+health)'
 --- !u!222 &1375428328
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12245,6 +12245,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3729143022350945798, guid: 10be05fcb137c5f4fa182ac36c639799,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1563432930476913659, guid: 10be05fcb137c5f4fa182ac36c639799,
         type: 3}
       propertyPath: m_Name
