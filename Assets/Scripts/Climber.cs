@@ -84,7 +84,7 @@ public class Climber : Player
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Apple")
+        if (collision.gameObject.tag == "Apple")
         {
             apples++;
             Destroy(collision.gameObject);

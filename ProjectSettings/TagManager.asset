@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Branch
   - Ground
+  - Apple
   layers:
   - Default
   - TransparentFX
