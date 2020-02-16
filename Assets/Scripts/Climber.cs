@@ -42,7 +42,16 @@ public class Climber : Player
         }
 
         MoveHorizontal();
-        
+
+        if (horizontalInput > 0.01f)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
         if (eatApple)
         {
             EatApple();
