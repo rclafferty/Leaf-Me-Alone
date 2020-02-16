@@ -5079,9 +5079,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeSprites:
-  - {fileID: 21300000, guid: 83d8598484980044bac74691ee685f95, type: 3}
-  - {fileID: 21300000, guid: 1611a024eb17c8c4bb969f3aea2ba15d, type: 3}
-  - {fileID: 21300000, guid: f906a2533965a3f439aef6d139f61dc5, type: 3}
+  - {fileID: 21300000, guid: e477c684a36c4f74b969d544f984dfb3, type: 3}
+  - {fileID: 21300000, guid: ce9529aa9f8e1d04c9d2e507c065f39d, type: 3}
+  - {fileID: 21300000, guid: 401cd75f84b36054db3721a4fd99262a, type: 3}
   childComponents: []
 --- !u!61 &1391307272
 BoxCollider2D:
@@ -5754,6 +5754,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4db1be80da51e8489e56d43f934a9c5, type: 3}
+--- !u!1 &1540247845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 757399101269067723, guid: 40602079bb3e9d241ae3039f800197e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8168105370584337214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1540247846
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540247845}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.12, y: 0.59}
+    newSize: {x: 0.12, y: 0.59}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12, y: 0.59}
+  m_EdgeRadius: 0
+--- !u!114 &1540247847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540247845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ebc1e8b06b7d246a6d8ab6e26fc4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeSprites:
+  - {fileID: 21300000, guid: 83d8598484980044bac74691ee685f95, type: 3}
+  - {fileID: 21300000, guid: 1611a024eb17c8c4bb969f3aea2ba15d, type: 3}
+  - {fileID: 21300000, guid: f906a2533965a3f439aef6d139f61dc5, type: 3}
+  childComponents: []
 --- !u!4 &1588815723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7865424097623136663, guid: a4db1be80da51e8489e56d43f934a9c5,
@@ -7982,55 +8031,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 319134368}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2033338909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4659912508169827022, guid: 40602079bb3e9d241ae3039f800197e3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8168105370584337214}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2033338911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033338909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ebc1e8b06b7d246a6d8ab6e26fc4b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  treeSprites:
-  - {fileID: 21300000, guid: 83d8598484980044bac74691ee685f95, type: 3}
-  - {fileID: 21300000, guid: 1611a024eb17c8c4bb969f3aea2ba15d, type: 3}
-  - {fileID: 21300000, guid: f906a2533965a3f439aef6d139f61dc5, type: 3}
-  childComponents: []
---- !u!61 &2033338912
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033338909}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
-  m_EdgeRadius: 0
 --- !u!4 &2057802960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7865424097623136663, guid: a4db1be80da51e8489e56d43f934a9c5,
