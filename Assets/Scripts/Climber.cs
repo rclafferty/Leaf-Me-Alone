@@ -17,6 +17,7 @@ public class Climber : Player
 
     bool isStunned = false;
 
+    [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite jumpingSprite;
     [SerializeField] Sprite walkingSprite;
 
@@ -30,6 +31,9 @@ public class Climber : Player
 
     [SerializeField] Text successText;
     [SerializeField] Button nextLevelButton;
+
+    Animator animator;
+
     
     int apples;
     
@@ -47,6 +51,11 @@ public class Climber : Player
         jumpForce = new Vector3(0, 5.5f, 0);
 
         healthBarImageWidth = healthBarImage.rectTransform.rect.width;
+
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
+
+        // spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -90,7 +99,7 @@ public class Climber : Player
     void Jump()
     {
         Debug.Log("Jumping");
-        GetComponent<SpriteRenderer>().sprite = jumpingSprite;
+        ChangeSprite("Jump()", jumpingSprite);
         thisRigidbody.AddForce(jumpForce, ForceMode2D.Impulse);
     }
 
@@ -134,13 +143,7 @@ public class Climber : Player
     void DisplayHealth()
     {
         float percentage = (float)health / (float)MAX_HEALTH;
-
-        /* RectTransform rectTransform = healthBarImage.rectTransform;
-        Vector3 scale = rectTransform.localScale;
-        scale.x = percentage;
-        rectTransform.localScale = scale;
-        healthBarImage.rectTransform = scale; */
-
+        
         healthBarImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, percentage * healthBarImageWidth);
     }
 
@@ -170,6 +173,8 @@ public class Climber : Player
         if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = true;
+            // spriteRenderer.sprite = walkingSprite;
+            ChangeSprite("Collision Enter -- " + collision.gameObject.name, walkingSprite);
         }
 
         if (collision.gameObject.tag == "Ground" && isFalling)
@@ -184,7 +189,8 @@ public class Climber : Player
     {
         // EndUI.SetActive(true);
         SuccessUI.SetActive(true);
-        GetComponent<Animator>().SetTrigger("Celebrate");
+        animator.enabled = true;
+        animator.SetTrigger("Celebrate");
 
         if (SceneManager.GetActiveScene().name == "Level3")
         {
@@ -208,7 +214,8 @@ public class Climber : Player
         if (health <= 0)
         {
             Debug.Log("Stunned!");
-            GetComponent<Animator>().SetTrigger("Stun");
+            animator.enabled = true;
+            animator.SetTrigger("Stun");
             isStunned = true;
             EndUI.SetActive(true);
         }
@@ -221,7 +228,7 @@ public class Climber : Player
         if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = true;
-            GetComponent<SpriteRenderer>().sprite = walkingSprite;
+            // spriteRenderer.sprite = walkingSprite;
         }
     }
 
@@ -230,14 +237,14 @@ public class Climber : Player
         if (CheckStandingCollision(collision.gameObject.tag))
         {
             isGrounded = false;
-            GetComponent<SpriteRenderer>().sprite = jumpingSprite;
+            ChangeSprite("Collision Exit -- " + collision.gameObject.name, jumpingSprite);
+            // spriteRenderer.sprite = jumpingSprite;
         }
 
         if (collision.gameObject.tag == "Branch")
         {
             isFalling = true;
             jumpLocation = transform.position;
-            GetComponent<SpriteRenderer>().sprite = jumpingSprite;
         }
     }
 
@@ -253,5 +260,12 @@ public class Climber : Player
         }
 
         return false;
+    }
+
+    void ChangeSprite(string callingTag, Sprite newSprite)
+    {
+        Debug.Log(callingTag + " changing sprite to " + newSprite.ToString());
+        spriteRenderer.sprite = newSprite;
+        // UnityEditor.EditorApplication.isPaused = true;
     }
 }
